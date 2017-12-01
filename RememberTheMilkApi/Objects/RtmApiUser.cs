@@ -6,19 +6,19 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiUser
     {
         [JsonProperty("id")]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("username")]
-        public string username { get; set; }
+        public string UserName { get; set; }
 
         [JsonProperty("fullname")]
-        public string fullname { get; set; }
+        public string FullName { get; set; }
 
         public RtmApiUser()
         {
-            id = 0;
-            username = string.Empty;
-            fullname = string.Empty;
+            Id = 0;
+            UserName = string.Empty;
+            FullName = string.Empty;
         }
     }
 }

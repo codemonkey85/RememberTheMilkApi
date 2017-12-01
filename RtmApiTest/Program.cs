@@ -1,8 +1,10 @@
 ﻿using RememberTheMilkApi;
 using RememberTheMilkApi.Objects;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 
 namespace RtmApiTest
 {
@@ -10,10 +12,17 @@ namespace RtmApiTest
     {
         private static void Main(string[] args)
         {
-            TestResponse();
+            CheckAuthentication();
+
+            string rtmMethodName = "rtm.tasks.getList";
+            IDictionary<string, string> parameters = new Dictionary<string, string>();
+
+            RtmApiRequest request = new RtmApiRequest();
+            request.Parameters = new System.Collections.Generic.SortedDictionary<string, string>(parameters);
+            RtmApiResponse response = RtmConnection.SendRequest(WebRequestMethods.Http.Get, rtmMethodName, request);
         }
 
-        private static void TestResponse()
+        private static void CheckAuthentication()
         {
             string authtoken;
             string apiKey;
@@ -82,7 +91,7 @@ namespace RtmApiTest
             {
                 using (StreamWriter sw = new StreamWriter(fs))
                 {
-                    sw.Write(authResponse.Auth.token);
+                    sw.Write(authResponse.Auth.Token);
                     sw.Close();
                     fs.Close();
                 }

@@ -23,6 +23,9 @@ namespace RememberTheMilkApi.Objects
         [JsonProperty("auth")]
         public RtmApiAuthResponse Auth { get; set; }
 
+        [JsonProperty("tasks")]
+        public dynamic Tasks { get; set; }
+
         [JsonProperty("err")]
         public RtmApiErrorResponse Error { get; set; }
 

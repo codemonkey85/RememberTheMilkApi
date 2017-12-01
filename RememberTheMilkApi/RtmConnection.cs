@@ -154,7 +154,7 @@ namespace RememberTheMilkApi
             RtmApiRequest request = new RtmApiRequest();
             request.Parameters = new SortedDictionary<string, string>(parameters);
             RtmApiResponse response = SendRequest(WebRequestMethods.Http.Get, _getToken, request);
-            _authToken = response.Auth.token;
+            _authToken = response.Auth.Token;
             return response;
         }
 
