@@ -7,8 +7,8 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiRequest
     {
         public SortedDictionary<string, string> Parameters { get; set; }
-        private string WebRequestMethod { get; set; }
-        private string RtmApiMethod { get; set; }
+        //private string WebRequestMethod { get; set; }
+        //private string RtmApiMethod { get; set; }
 
         public RtmApiRequest()
         {

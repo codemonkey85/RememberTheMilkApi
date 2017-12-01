@@ -2,8 +2,8 @@
 
 namespace RememberTheMilkApi.Objects
 {
-    [JsonObject("taskseries")]
-    public class RtmApiTaskObject
+    [JsonObject("list")]
+    public class RtmApiListObject
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -11,7 +11,7 @@ namespace RememberTheMilkApi.Objects
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        public RtmApiTaskObject()
+        public RtmApiListObject()
         {
             Id = string.Empty;
             Name = string.Empty;

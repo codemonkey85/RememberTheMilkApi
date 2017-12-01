@@ -14,13 +14,17 @@ namespace RtmApiTest
         {
             CheckAuthentication();
 
-            string rtmMethodName = "rtm.tasks.getList";
             IDictionary<string, string> parameters = new Dictionary<string, string>();
 
+            RtmApiResponse listResponse = SendRequest("rtm.lists.getList", parameters);
+            RtmApiResponse taskResponse = SendRequest("rtm.tasks.getList", parameters);
+        }
+
+        private static RtmApiResponse SendRequest(string rtmMethodName, IDictionary<string, string> parameters)
+        {
             RtmApiRequest request = new RtmApiRequest();
             request.Parameters = new System.Collections.Generic.SortedDictionary<string, string>(parameters);
-            RtmApiResponse response = RtmConnection.SendRequest(WebRequestMethods.Http.Get, rtmMethodName, request);
-            var allTasks = response.Tasks;
+            return RtmConnection.SendRequest(WebRequestMethods.Http.Get, rtmMethodName, request);
         }
 
         private static void CheckAuthentication()
