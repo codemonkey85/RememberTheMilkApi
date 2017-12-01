@@ -20,6 +20,7 @@ namespace RtmApiTest
             RtmApiRequest request = new RtmApiRequest();
             request.Parameters = new System.Collections.Generic.SortedDictionary<string, string>(parameters);
             RtmApiResponse response = RtmConnection.SendRequest(WebRequestMethods.Http.Get, rtmMethodName, request);
+            var allTasks = response.Tasks;
         }
 
         private static void CheckAuthentication()

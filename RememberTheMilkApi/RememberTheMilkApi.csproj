@@ -52,6 +52,9 @@
     <Compile Include="Objects\RtmApiResponse.cs" />
     <Compile Include="Objects\RtmApiErrorResponse.cs" />
     <Compile Include="Objects\RtmApiResponseRoot.cs" />
+    <Compile Include="Objects\RtmApiTaskList.cs" />
+    <Compile Include="Objects\RtmApiTaskListCollection.cs" />
+    <Compile Include="Objects\RtmApiTaskObject.cs" />
     <Compile Include="Objects\RtmApiUser.cs" />
     <Compile Include="RtmConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
