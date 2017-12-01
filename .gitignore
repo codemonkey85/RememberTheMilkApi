@@ -6,6 +6,7 @@
 # API Key files
 *.apikey
 *.secret
+*.authtoken
 
 # User-specific files
 *.suo

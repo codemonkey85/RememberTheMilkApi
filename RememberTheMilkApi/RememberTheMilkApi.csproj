@@ -47,10 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
-    <Compile Include="Objects\RtmRequest.cs" />
-    <Compile Include="Objects\RtmResponse.cs" />
-    <Compile Include="Objects\RtmErrorResponse.cs" />
-    <Compile Include="Objects\RtmResponseRoot.cs" />
+    <Compile Include="Objects\RtmApiAuthResponse.cs" />
+    <Compile Include="Objects\RtmApiRequest.cs" />
+    <Compile Include="Objects\RtmApiResponse.cs" />
+    <Compile Include="Objects\RtmApiErrorResponse.cs" />
+    <Compile Include="Objects\RtmApiResponseRoot.cs" />
+    <Compile Include="Objects\RtmApiUser.cs" />
     <Compile Include="RtmConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

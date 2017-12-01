@@ -3,7 +3,7 @@
 namespace RememberTheMilkApi.Objects
 {
     [JsonObject("err")]
-    public class RtmErrorResponse
+    public class RtmApiErrorResponse
     {
         [JsonProperty("code")]
         public int Code { get; set; }
@@ -11,7 +11,7 @@ namespace RememberTheMilkApi.Objects
         [JsonProperty("msg")]
         public string Message { get; set; }
 
-        public RtmErrorResponse()
+        public RtmApiErrorResponse()
         {
             Code = 0;
             Message = string.Empty;

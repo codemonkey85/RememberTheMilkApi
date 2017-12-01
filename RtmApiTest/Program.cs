@@ -1,7 +1,8 @@
 ﻿using RememberTheMilkApi;
 using RememberTheMilkApi.Objects;
+using System;
+using System.Diagnostics;
 using System.IO;
-using System.Net;
 
 namespace RtmApiTest
 {
@@ -14,6 +15,7 @@ namespace RtmApiTest
 
         private static void TestResponse()
         {
+            string authtoken;
             string apiKey;
             string secret;
 
@@ -38,13 +40,53 @@ namespace RtmApiTest
             }
 
             RtmConnection.InitializeRtmConnection(apiKey, secret);
-            RtmResponse result = RtmConnection.SendRequest(WebRequestMethods.Http.Get, new RtmRequest
+
+            if (File.Exists("authtoken.authtoken"))
             {
-                Parameters = new System.Collections.Generic.SortedDictionary<string, string>()
+                using (FileStream fs = new FileStream("authtoken.authtoken", FileMode.Open, FileAccess.Read))
                 {
-                { "", "" },
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        authtoken = sr.ReadLine();
+                        sr.Close();
+                        fs.Close();
+                    }
                 }
-            });
+                RtmConnection.SetApiAuthToken(authtoken);
+            }
+            else
+            {
+                RefreshToken();
+            }
+
+            RtmApiResponse tokenResponse = RtmConnection.CheckApiAuthToken();
+            if (tokenResponse.Error.Code == 98)
+            {
+                RefreshToken();
+            }
+
+            tokenResponse = RtmConnection.CheckApiAuthToken();
+        }
+
+        private static void RefreshToken()
+        {
+            string url = RtmConnection.GetAuthenticationUrl(RtmConnection.Permissions.Delete);
+
+            Console.WriteLine("Press any key after auth is complete.");
+            Process.Start(url);
+            Console.ReadKey();
+
+            RtmApiResponse authResponse = RtmConnection.GetApiAuthToken();
+
+            using (FileStream fs = new FileStream("authtoken.authtoken", FileMode.Create, FileAccess.ReadWrite))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.Write(authResponse.Auth.token);
+                    sw.Close();
+                    fs.Close();
+                }
+            }
         }
     }
 }
