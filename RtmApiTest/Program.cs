@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Linq;
 
 namespace RtmApiTest
 {
@@ -18,6 +19,10 @@ namespace RtmApiTest
 
             RtmApiResponse listResponse = SendRequest("rtm.lists.getList", parameters);
             RtmApiResponse taskResponse = SendRequest("rtm.tasks.getList", parameters);
+
+            Console.WriteLine(string.Join(",", listResponse.ListCollection.Lists.Select(list => list.Name)));
+            Console.WriteLine(string.Join(",", taskResponse.Tasks.TaskSeries.Select(series => series.TaskSeries != null ? string.Join(",", series.TaskSeries.Select(task => task.Name)) : string.Empty)));
+            Console.ReadKey();
         }
 
         private static RtmApiResponse SendRequest(string rtmMethodName, IDictionary<string, string> parameters)

@@ -8,6 +8,9 @@
 *.secret
 *.authtoken
 
+# macOS files
+*.ds_store
+
 # User-specific files
 *.suo
 *.user
