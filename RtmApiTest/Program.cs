@@ -17,19 +17,12 @@ namespace RtmApiTest
 
             IDictionary<string, string> parameters = new Dictionary<string, string>();
 
-            RtmApiResponse listResponse = SendRequest("rtm.lists.getList", parameters);
-            RtmApiResponse taskResponse = SendRequest("rtm.tasks.getList", parameters);
+            RtmApiResponse listResponse = RtmConnection.SendRequest("rtm.lists.getList", parameters);
+            RtmApiResponse taskResponse = RtmConnection.SendRequest("rtm.tasks.getList", parameters);
 
             Console.WriteLine(string.Join(",", listResponse.ListCollection.Lists.Select(list => list.Name)));
             Console.WriteLine(string.Join(",", taskResponse.Tasks.TaskSeries.Select(series => series.TaskSeries != null ? string.Join(",", series.TaskSeries.Select(task => task.Name)) : string.Empty)));
             Console.ReadKey();
-        }
-
-        private static RtmApiResponse SendRequest(string rtmMethodName, IDictionary<string, string> parameters)
-        {
-            RtmApiRequest request = new RtmApiRequest();
-            request.Parameters = new System.Collections.Generic.SortedDictionary<string, string>(parameters);
-            return RtmConnection.SendRequest(WebRequestMethods.Http.Get, rtmMethodName, request);
         }
 
         private static void CheckAuthentication()

@@ -158,7 +158,15 @@ namespace RememberTheMilkApi
             return response;
         }
 
-        public static RtmApiResponse SendRequest(string webRequestMethod, string rtmMethod, RtmApiRequest request)
+        public static RtmApiResponse SendRequest(string rtmMethodName, IDictionary<string, string> parameters)
+        {
+            return SendRequest(WebRequestMethods.Http.Get, rtmMethodName, new RtmApiRequest
+            {
+                Parameters = new System.Collections.Generic.SortedDictionary<string, string>(parameters)
+            });
+        }
+
+        private static RtmApiResponse SendRequest(string webRequestMethod, string rtmMethod, RtmApiRequest request)
         {
             RtmApiResponse response = null;
             try
