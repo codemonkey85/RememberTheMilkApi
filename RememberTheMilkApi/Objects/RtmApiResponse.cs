@@ -24,13 +24,13 @@ namespace RememberTheMilkApi.Objects
         public RtmApiAuthResponse Auth { get; set; }
 
         [JsonProperty("tasks")]
-        public RtmApiTaskSeriesCollection Tasks { get; set; }
+        public RtmApiTaskSeriesCollection TaskSeriesCollection { get; set; }
 
         [JsonProperty("lists")]
         public RtmApiListCollection ListCollection { get; set; }
 
         [JsonProperty("err")]
-        public RtmApiErrorResponse Error { get; set; }
+        public RtmApiErrorResponse ErrorResponse { get; set; }
 
         public RtmApiResponse()
         {
@@ -40,9 +40,9 @@ namespace RememberTheMilkApi.Objects
             Method = string.Empty;
             Frob = string.Empty;
             Auth = new RtmApiAuthResponse();
-            Tasks = new RtmApiTaskSeriesCollection();
+            TaskSeriesCollection = new RtmApiTaskSeriesCollection();
             ListCollection = new RtmApiListCollection();
-            Error = new RtmApiErrorResponse();
+            ErrorResponse = new RtmApiErrorResponse();
         }
     }
 }

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Linq;
 
 namespace RtmApiTest
@@ -20,8 +19,10 @@ namespace RtmApiTest
             RtmApiResponse listResponse = RtmConnection.SendRequest("rtm.lists.getList", parameters);
             RtmApiResponse taskResponse = RtmConnection.SendRequest("rtm.tasks.getList", parameters);
 
-            Console.WriteLine(string.Join(",", listResponse.ListCollection.Lists.Select(list => list.Name)));
-            Console.WriteLine(string.Join(",", taskResponse.Tasks.TaskSeries.Select(series => series.TaskSeries != null ? string.Join(",", series.TaskSeries.Select(task => task.Name)) : string.Empty)));
+            Console.WriteLine("Lists:");
+            Console.WriteLine(string.Join(Environment.NewLine, listResponse.ListCollection.Lists.Select(list => list.Name)));
+            Console.WriteLine("{0}Tasks:", Environment.NewLine);
+            Console.WriteLine(string.Join(Environment.NewLine, taskResponse.TaskSeriesCollection.TaskSeriesList.Where(series => series.TaskSeries != null && series.TaskSeries.Any()).Select(series => string.Join(Environment.NewLine, series.TaskSeries.Select(task => task.Name)))));
             Console.ReadKey();
         }
 
@@ -72,7 +73,7 @@ namespace RtmApiTest
             }
 
             RtmApiResponse tokenResponse = RtmConnection.CheckApiAuthToken();
-            if (tokenResponse.Error.Code == 98)
+            if (tokenResponse.ErrorResponse.Code == 98)
             {
                 RefreshToken();
             }
