@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+using RememberTheMilkApi.Converters;
 using System.Collections.Generic;
 
 namespace RememberTheMilkApi.Objects
@@ -26,7 +25,8 @@ namespace RememberTheMilkApi.Objects
         #region In Development
 
         [JsonProperty("tags")]
-        public dynamic Tags { get; set; }
+        [JsonConverter(typeof(SingleOrArrayConverter<RtmApiTagObject>))]
+        public IList<RtmApiTagObject> Tags { get; set; }
 
         [JsonProperty("participants")]
         public dynamic Participants { get; set; }
@@ -48,39 +48,12 @@ namespace RememberTheMilkApi.Objects
             Modified = string.Empty;
             Source = string.Empty;
             Task = new List<RtmApiTaskObject>();
+            Tags = new List<RtmApiTagObject>();
         }
 
         public override string ToString()
         {
             return Name ?? string.Empty;
-        }
-    }
-
-    internal class SingleOrArrayConverter<T> : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return (objectType == typeof(List<T>));
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            JToken token = JToken.Load(reader);
-            if (token.Type == JTokenType.Array)
-            {
-                return token.ToObject<List<T>>();
-            }
-            return new List<T> { token.ToObject<T>() };
-        }
-
-        public override bool CanWrite
-        {
-            get { return false; }
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
         }
     }
 }

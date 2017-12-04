@@ -19,6 +19,9 @@ namespace RtmApiTest
             RtmApiResponse listResponse = RtmConnection.SendRequest("rtm.lists.getList", parameters);
             RtmApiResponse taskResponse = RtmConnection.SendRequest("rtm.tasks.getList", parameters);
 
+            IList<string> tssListIds = listResponse.ListCollection.Lists.Where(list => list.Name.ToLower().Contains("3ss")).Select(list => list.Id).ToList();
+            IList<RtmApiTaskSeriesList> test = taskResponse.TaskSeriesCollection.TaskSeriesList.Where(taskSeriesList => taskSeriesList.TaskSeries.Any() && tssListIds.Contains(taskSeriesList.Id)).ToList();
+
             Console.WriteLine("Lists:");
             Console.WriteLine(string.Join(Environment.NewLine, listResponse.ListCollection.Lists.Select(list => list.Name)));
             Console.WriteLine("{0}Tasks:", Environment.NewLine);

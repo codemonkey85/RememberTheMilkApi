@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\SingleOrArrayConverter.cs" />
     <Compile Include="Extensions\IDictionaryExtensions.cs" />
     <Compile Include="Objects\RtmApiAuthResponse.cs" />
     <Compile Include="Objects\RtmApiListCollection.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Objects\RtmApiErrorResponse.cs" />
     <Compile Include="Objects\RtmApiResponseRoot.cs" />
     <Compile Include="Objects\RtmApiListObject.cs" />
+    <Compile Include="Objects\RtmApiTagObject.cs" />
     <Compile Include="Objects\RtmApiTaskObject.cs" />
     <Compile Include="Objects\RtmApiTaskSeriesList.cs" />
     <Compile Include="Objects\RtmApiTaskSeriesCollection.cs" />
