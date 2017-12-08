@@ -16,9 +16,9 @@ namespace RememberTheMilkApi
     {
         private static string _authUrl = @"https://www.rememberthemilk.com/services/auth/";
         private static string _restUrl = @"https://api.rememberthemilk.com/services/rest/";
-        internal static string _apiKey;
-        internal static string _secret;
-        internal static string _authToken;
+        internal static string ApiKey;
+        internal static string Secret;
+        internal static string AuthToken;
 
         private static string _frob;
 
@@ -26,7 +26,7 @@ namespace RememberTheMilkApi
         private static string _getToken = @"rtm.auth.getToken";
         private static string _checkToken = @"rtm.auth.checkToken";
 
-        private static MD5 md5;
+        private static MD5 _md5;
 
         public enum Permissions
         {
@@ -37,16 +37,16 @@ namespace RememberTheMilkApi
 
         public static void InitializeRtmConnection(string apiKey, string secret)
         {
-            _apiKey = apiKey;
-            _secret = secret;
-            md5 = System.Security.Cryptography.MD5.Create();
+            ApiKey = apiKey;
+            Secret = secret;
+            _md5 = MD5.Create();
         }
 
         public static string GetAuthenticationUrl(Permissions permissions)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
-                { "api_key", _apiKey },
+                { "api_key", ApiKey },
                 { "format", "json" },
                 { "method", _getFrob }
             };
@@ -58,7 +58,7 @@ namespace RememberTheMilkApi
             WebRequest webRequest = WebRequest.Create(url);
             webRequest.Method = WebRequestMethods.Http.Get;
             WebResponse webResponse = webRequest.GetResponse();
-            string data = string.Empty;
+            string data;
             using (StreamReader sr = new StreamReader(webResponse.GetResponseStream()))
             {
                 data = sr.ReadToEnd();
@@ -104,8 +104,7 @@ namespace RememberTheMilkApi
 
         private static string SignApiParameters(SortedDictionary<string, string> parameters)
         {
-            string encodedParameters = EncodeParameters(parameters, true);
-            return CalculateMD5Hash(string.Format("{0}{1}", _secret, EncodeParameters(parameters, true)));
+            return CalculateMd5Hash(string.Format("{0}{1}", Secret, EncodeParameters(parameters, true)));
         }
 
         private static string EncodeParameters(IDictionary<string, string> parameters, bool signing = false)
@@ -113,11 +112,11 @@ namespace RememberTheMilkApi
             return string.Join(signing ? "" : "&", parameters.Select(kvp => string.Format("{0}{1}{2}", kvp.Key, signing ? "" : "=", HttpUtility.UrlEncode(kvp.Value))));
         }
 
-        private static string CalculateMD5Hash(string input)
+        private static string CalculateMd5Hash(string input)
         {
             // step 1, calculate MD5 hash from input
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
-            byte[] hash = md5.ComputeHash(inputBytes);
+            byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+            byte[] hash = _md5.ComputeHash(inputBytes);
 
             // step 2, convert byte array to hex string
             StringBuilder sb = new StringBuilder();
@@ -131,12 +130,12 @@ namespace RememberTheMilkApi
 
         public static void SetApiAuthToken(string apiAuthToken)
         {
-            _authToken = apiAuthToken;
+            AuthToken = apiAuthToken;
         }
 
         public static RtmApiResponse CheckApiAuthToken()
         {
-            return RtmConnection.SendRequest(WebRequestMethods.Http.Get, _checkToken, new RtmApiRequest
+            return SendRequest(WebRequestMethods.Http.Get, _checkToken, new RtmApiRequest
             {
                 Parameters = new SortedDictionary<string, string>()
             });
@@ -146,7 +145,7 @@ namespace RememberTheMilkApi
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
-                { "api_key", _apiKey },
+                { "api_key", ApiKey },
                 { "format", "json" },
                 { "frob", _frob },
                 { "method", _getToken }
@@ -154,7 +153,7 @@ namespace RememberTheMilkApi
             RtmApiRequest request = new RtmApiRequest();
             request.Parameters = new SortedDictionary<string, string>(parameters);
             RtmApiResponse response = SendRequest(WebRequestMethods.Http.Get, _getToken, request);
-            _authToken = response.Auth.Token;
+            AuthToken = response.Auth.Token;
             return response;
         }
 
@@ -162,7 +161,7 @@ namespace RememberTheMilkApi
         {
             return SendRequest(WebRequestMethods.Http.Get, rtmMethodName, new RtmApiRequest
             {
-                Parameters = new System.Collections.Generic.SortedDictionary<string, string>(parameters)
+                Parameters = new SortedDictionary<string, string>(parameters)
             });
         }
 
@@ -173,8 +172,8 @@ namespace RememberTheMilkApi
             {
                 request.Parameters.CreateNewOrUpdateExisting("format", "json");
                 request.Parameters.CreateNewOrUpdateExisting("method", rtmMethod);
-                request.Parameters.CreateNewOrUpdateExisting("api_key", _apiKey);
-                request.Parameters.CreateNewOrUpdateExisting("auth_token", _authToken);
+                request.Parameters.CreateNewOrUpdateExisting("api_key", ApiKey);
+                request.Parameters.CreateNewOrUpdateExisting("auth_token", AuthToken);
 
                 request.Parameters.Remove("api_sig");
 
@@ -186,7 +185,7 @@ namespace RememberTheMilkApi
                 WebRequest webRequest = WebRequest.Create(url);
                 webRequest.Method = webRequestMethod;
                 WebResponse webResponse = webRequest.GetResponse();
-                string data = string.Empty;
+                string data;
                 using (StreamReader sr = new StreamReader(webResponse.GetResponseStream()))
                 {
                     data = sr.ReadToEnd();

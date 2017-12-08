@@ -31,7 +31,6 @@ namespace RtmApiTest
 
         private static void CheckAuthentication()
         {
-            string authtoken;
             string apiKey;
             string secret;
 
@@ -59,6 +58,7 @@ namespace RtmApiTest
 
             if (File.Exists("authtoken.authtoken"))
             {
+                string authtoken;
                 using (FileStream fs = new FileStream("authtoken.authtoken", FileMode.Open, FileAccess.Read))
                 {
                     using (StreamReader sr = new StreamReader(fs))
@@ -81,7 +81,8 @@ namespace RtmApiTest
                 RefreshToken();
             }
 
-            tokenResponse = RtmConnection.CheckApiAuthToken();
+            /*tokenResponse =*/
+            RtmConnection.CheckApiAuthToken();
         }
 
         private static void RefreshToken()
