@@ -32,6 +32,9 @@ namespace RememberTheMilkApi.Objects
         [JsonProperty("err")]
         public RtmApiErrorResponse ErrorResponse { get; set; }
 
+        [JsonProperty("timeline")]
+        public string TimeLine { get; set; }
+
         public RtmApiResponse()
         {
             Status = string.Empty;
@@ -43,6 +46,7 @@ namespace RememberTheMilkApi.Objects
             TaskSeriesCollection = new RtmApiTaskSeriesCollection();
             ListCollection = new RtmApiListCollection();
             ErrorResponse = new RtmApiErrorResponse();
+            TimeLine = string.Empty;
         }
     }
 }
