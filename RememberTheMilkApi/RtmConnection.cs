@@ -109,7 +109,8 @@ namespace RememberTheMilkApi
 
         private static string EncodeParameters(IDictionary<string, string> parameters, bool signing = false)
         {
-            return string.Join(signing ? "" : "&", parameters.Select(kvp => string.Format("{0}{1}{2}", kvp.Key, signing ? "" : "=", HttpUtility.UrlEncode(kvp.Value))));
+            return string.Join(signing ? "" : "&", 
+                parameters.Select(kvp => string.Format("{0}{1}", kvp.Key, signing ? kvp.Value : "=" + HttpUtility.UrlEncode(kvp.Value))));
         }
 
         private static string CalculateMd5Hash(string input)
