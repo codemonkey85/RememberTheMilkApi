@@ -1,4 +1,5 @@
 ﻿using RememberTheMilkApi;
+using RememberTheMilkApi.Extensions;
 using RememberTheMilkApi.Objects;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,41 @@ namespace RtmApiTest
             RtmApiResponse listResponse = RtmConnection.SendRequest("rtm.lists.getList", parameters);
             RtmApiResponse taskResponse = RtmConnection.SendRequest("rtm.tasks.getList", parameters);
 
-            IList<string> tssListIds = listResponse.ListCollection.Lists.Where(list => list.Name.ToLower().Contains("3ss")).Select(list => list.Id).ToList();
+            IList<string> tssListIds = listResponse.ListCollection.Lists.Where(list => list.Name.ToLower() == "bills").Select(list => list.Id).ToList();
             IList<RtmApiTaskSeriesList> test = taskResponse.TaskSeriesCollection.TaskSeriesList.Where(taskSeriesList => taskSeriesList.TaskSeries.Any() && tssListIds.Contains(taskSeriesList.Id)).ToList();
+
+            string billListId = tssListIds.FirstOrDefault();
 
             Console.WriteLine("Lists:");
             Console.WriteLine(string.Join(Environment.NewLine, listResponse.ListCollection.Lists.Select(list => list.Name)));
             Console.WriteLine("{0}Tasks:", Environment.NewLine);
-            Console.WriteLine(string.Join(Environment.NewLine, taskResponse.TaskSeriesCollection.TaskSeriesList.Where(series => series.TaskSeries != null && series.TaskSeries.Any()).Select(series => string.Join(Environment.NewLine, series.TaskSeries.Select(task => task.Name)))));
+
+            IList<string> taskList = (from series in taskResponse.TaskSeriesCollection.TaskSeriesList.Where(series => series.Id == billListId && series.TaskSeries != null && series.TaskSeries.Any()) from taskSeries in series.TaskSeries select taskSeries.Task.First().Due == string.Empty ? taskSeries.Name : $"{taskSeries.Name} due {taskSeries.Task.First().DueLocalTime.ToString("MM/dd/yyyy")}").ToList();
+
+            //var taskListE =
+            //    taskResponse.TaskSeriesCollection.TaskSeriesList
+            //        .Where(series =>
+            //            series.Id == billListId && series.TaskSeries != null && series.TaskSeries.Any())
+            //        .Select(series =>
+            //            series.TaskSeries
+            //                .Select(task =>
+            //                    task.Task.First().Due == string.Empty
+            //                        ? task.Name
+            //                        : string.Format("{0} due {1}",
+            //                            task.Name, task.Task.First().DueLocalTime.ToString("MM/dd/yyyy"))));
+
+            string taskListString = string.Join(Environment.NewLine, taskList.OrderBy(task => task));
+
+            Console.WriteLine(taskListString);
+            using (FileStream fs = new FileStream(@"C:\Users\mbond\Desktop\ARRIS\bills.txt", FileMode.Create, FileAccess.ReadWrite))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.Write(taskListString);
+                    sw.Close();
+                    fs.Close();
+                }
+            }
             Console.ReadKey();
         }
 

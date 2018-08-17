@@ -9,7 +9,7 @@ namespace RememberTheMilkApi.Converters
     {
         public override bool CanConvert(Type objectType)
         {
-            return (objectType == typeof(List<T>));
+            return objectType == typeof(List<T>);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -22,10 +22,7 @@ namespace RememberTheMilkApi.Converters
             return new List<T> { token.ToObject<T>() };
         }
 
-        public override bool CanWrite
-        {
-            get { return false; }
-        }
+        public override bool CanWrite => false;
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

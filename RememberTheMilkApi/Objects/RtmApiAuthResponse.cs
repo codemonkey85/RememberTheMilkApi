@@ -6,13 +6,22 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiAuthResponse
     {
         [JsonProperty("token")]
-        public string Token { get; set; }
+        public string Token
+        {
+            get; set;
+        }
 
         [JsonProperty("perms")]
-        public string Permissions { get; set; }
+        public string Permissions
+        {
+            get; set;
+        }
 
         [JsonProperty("user")]
-        public RtmApiUser User { get; set; }
+        public RtmApiUser User
+        {
+            get; set;
+        }
 
         public RtmApiAuthResponse()
         {

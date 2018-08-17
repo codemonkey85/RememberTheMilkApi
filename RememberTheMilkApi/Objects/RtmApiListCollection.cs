@@ -7,7 +7,10 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiListCollection
     {
         [JsonProperty("list")]
-        public IList<RtmApiListObject> Lists { get; set; }
+        public IList<RtmApiListObject> Lists
+        {
+            get; set;
+        }
 
         public RtmApiListCollection()
         {

@@ -8,35 +8,62 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiTaskSeries
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string Id
+        {
+            get; set;
+        }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get; set;
+        }
 
         [JsonProperty("created")]
-        public string Created { get; set; }
+        public string Created
+        {
+            get; set;
+        }
 
         [JsonProperty("modified")]
-        public string Modified { get; set; }
+        public string Modified
+        {
+            get; set;
+        }
 
         [JsonProperty("source")]
-        public string Source { get; set; }
+        public string Source
+        {
+            get; set;
+        }
 
         #region In Development
 
         [JsonProperty("tags")]
         [JsonConverter(typeof(SingleOrArrayConverter<RtmApiTagObject>))]
-        public IList<RtmApiTagObject> Tags { get; set; }
+        public IList<RtmApiTagObject> Tags
+        {
+            get; set;
+        }
 
         [JsonProperty("participants")]
-        public dynamic Participants { get; set; }
+        public dynamic Participants
+        {
+            get; set;
+        }
 
         [JsonProperty("notes")]
-        public dynamic Notes { get; set; }
+        public dynamic Notes
+        {
+            get; set;
+        }
 
         [JsonProperty("task")]
         [JsonConverter(typeof(SingleOrArrayConverter<RtmApiTaskObject>))]
-        public IList<RtmApiTaskObject> Task { get; set; }
+        public IList<RtmApiTaskObject> Task
+        {
+            get; set;
+        }
 
         #endregion In Development
 

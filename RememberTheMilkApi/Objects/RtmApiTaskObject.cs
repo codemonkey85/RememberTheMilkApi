@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 
 namespace RememberTheMilkApi.Objects
 {
@@ -6,31 +8,71 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiTaskObject
     {
         [JsonProperty("added")]
-        public string Added { get; set; }
+        public string Added
+        {
+            get; set;
+        }
 
         [JsonProperty("completed")]
-        public string Completed { get; set; }
+        public string Completed
+        {
+            get; set;
+        }
 
         [JsonProperty("deleted")]
-        public string Deleted { get; set; }
+        public string Deleted
+        {
+            get; set;
+        }
 
         [JsonProperty("due")]
-        public string Due { get; set; }
+        public string Due
+        {
+            get; set;
+        }
+
+        public DateTime? DueLocalTime
+        {
+            get
+            {
+                if (Due == string.Empty)
+                {
+                    return null;
+                }
+                DateTime.TryParse(Due, out DateTime dtLocalTime);
+                return dtLocalTime.ToLocalTime();
+            }
+        }
 
         [JsonProperty("estimate")]
-        public string Estimate { get; set; }
+        public string Estimate
+        {
+            get; set;
+        }
 
         [JsonProperty("has_due_time")]
-        public string HasDueTime { get; set; }
+        public string HasDueTime
+        {
+            get; set;
+        }
 
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string Id
+        {
+            get; set;
+        }
 
         [JsonProperty("postponed")]
-        public string Postponed { get; set; }
+        public string Postponed
+        {
+            get; set;
+        }
 
         [JsonProperty("priority")]
-        public string Priority { get; set; }
+        public string Priority
+        {
+            get; set;
+        }
 
         public RtmApiTaskObject()
         {

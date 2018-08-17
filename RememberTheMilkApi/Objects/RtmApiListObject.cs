@@ -6,25 +6,46 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiListObject
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string Id
+        {
+            get; set;
+        }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get; set;
+        }
 
         [JsonProperty("archived")]
-        public string Archived { get; set; }
+        public string Archived
+        {
+            get; set;
+        }
 
         [JsonProperty("deleted")]
-        public string Deleted { get; set; }
+        public string Deleted
+        {
+            get; set;
+        }
 
         [JsonProperty("locked")]
-        public string Locked { get; set; }
+        public string Locked
+        {
+            get; set;
+        }
 
         [JsonProperty("position")]
-        public string Position { get; set; }
+        public string Position
+        {
+            get; set;
+        }
 
         [JsonProperty("smart")]
-        public string Smart { get; set; }
+        public string Smart
+        {
+            get; set;
+        }
 
         public RtmApiListObject()
         {

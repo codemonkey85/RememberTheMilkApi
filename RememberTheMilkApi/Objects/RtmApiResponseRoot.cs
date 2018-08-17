@@ -6,7 +6,10 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiResponseRoot
     {
         [JsonProperty("rsp")]
-        public RtmApiResponse Response { get; set; }
+        public RtmApiResponse Response
+        {
+            get; set;
+        }
 
         public RtmApiResponseRoot()
         {

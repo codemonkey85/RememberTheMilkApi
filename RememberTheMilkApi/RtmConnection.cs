@@ -14,17 +14,17 @@ namespace RememberTheMilkApi
 {
     public static class RtmConnection
     {
-        private static string _authUrl = @"https://www.rememberthemilk.com/services/auth/";
-        private static string _restUrl = @"https://api.rememberthemilk.com/services/rest/";
+        private const string AuthUrl = @"https://www.rememberthemilk.com/services/auth/";
+        private const string RestUrl = @"https://api.rememberthemilk.com/services/rest/";
         internal static string ApiKey;
         internal static string Secret;
         internal static string AuthToken;
 
         private static string _frob;
 
-        private static string _getFrob = @"rtm.auth.getFrob";
-        private static string _getToken = @"rtm.auth.getToken";
-        private static string _checkToken = @"rtm.auth.checkToken";
+        private const string GetFrob = @"rtm.auth.getFrob";
+        private const string GetToken = @"rtm.auth.getToken";
+        private const string CheckToken = @"rtm.auth.checkToken";
 
         private static MD5 _md5;
 
@@ -48,12 +48,12 @@ namespace RememberTheMilkApi
             {
                 { "api_key", ApiKey },
                 { "format", "json" },
-                { "method", _getFrob }
+                { "method", GetFrob }
             };
 
             string apiSig = SignApiParameters(parameters);
             parameters.Add("api_sig", apiSig);
-            string url = string.Format("{0}?{1}", _restUrl, EncodeParameters(parameters));
+            string url = $"{RestUrl}?{EncodeParameters(parameters)}";
 
             WebRequest webRequest = WebRequest.Create(url);
             webRequest.Method = WebRequestMethods.Http.Get;
@@ -93,7 +93,7 @@ namespace RememberTheMilkApi
             apiSig = SignApiParameters(parameters).ToLower();
             parameters.CreateNewOrUpdateExisting("api_sig", apiSig);
 
-            return string.Format("{0}?{1}", _authUrl, EncodeParameters(parameters));
+            return $"{AuthUrl}?{EncodeParameters(parameters)}";
         }
 
         private static string SignApiParameters(IDictionary<string, string> parameters)
@@ -104,13 +104,13 @@ namespace RememberTheMilkApi
 
         private static string SignApiParameters(SortedDictionary<string, string> parameters)
         {
-            return CalculateMd5Hash(string.Format("{0}{1}", Secret, EncodeParameters(parameters, true)));
+            return CalculateMd5Hash($"{Secret}{EncodeParameters(parameters, true)}");
         }
 
         private static string EncodeParameters(IDictionary<string, string> parameters, bool signing = false)
         {
-            return string.Join(signing ? "" : "&", 
-                parameters.Select(kvp => string.Format("{0}{1}", kvp.Key, signing ? kvp.Value : "=" + HttpUtility.UrlEncode(kvp.Value))));
+            return string.Join(signing ? "" : "&",
+                parameters.Select(kvp => $"{kvp.Key}{(signing ? kvp.Value : "=" + HttpUtility.UrlEncode(kvp.Value))}"));
         }
 
         private static string CalculateMd5Hash(string input)
@@ -121,9 +121,9 @@ namespace RememberTheMilkApi
 
             // step 2, convert byte array to hex string
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
+            foreach (byte b in hash)
             {
-                sb.Append(hash[i].ToString("X2"));
+                sb.Append(b.ToString("X2"));
             }
 
             return sb.ToString();
@@ -136,7 +136,7 @@ namespace RememberTheMilkApi
 
         public static RtmApiResponse CheckApiAuthToken()
         {
-            return SendRequest(WebRequestMethods.Http.Get, _checkToken, new RtmApiRequest
+            return SendRequest(WebRequestMethods.Http.Get, CheckToken, new RtmApiRequest
             {
                 Parameters = new SortedDictionary<string, string>()
             });
@@ -149,11 +149,13 @@ namespace RememberTheMilkApi
                 { "api_key", ApiKey },
                 { "format", "json" },
                 { "frob", _frob },
-                { "method", _getToken }
+                { "method", GetToken }
             };
-            RtmApiRequest request = new RtmApiRequest();
-            request.Parameters = new SortedDictionary<string, string>(parameters);
-            RtmApiResponse response = SendRequest(WebRequestMethods.Http.Get, _getToken, request);
+            RtmApiRequest request = new RtmApiRequest
+            {
+                Parameters = new SortedDictionary<string, string>(parameters)
+            };
+            RtmApiResponse response = SendRequest(WebRequestMethods.Http.Get, GetToken, request);
             AuthToken = response.Auth.Token;
             return response;
         }
@@ -181,7 +183,7 @@ namespace RememberTheMilkApi
                 string apiSig = SignApiParameters(request.Parameters);
                 request.Parameters.Add("api_sig", apiSig);
 
-                string url = string.Format("{0}?{1}", _restUrl, EncodeParameters(request.Parameters));
+                string url = $"{RestUrl}?{EncodeParameters(request.Parameters)}";
 
                 WebRequest webRequest = WebRequest.Create(url);
                 webRequest.Method = webRequestMethod;

@@ -6,37 +6,70 @@ namespace RememberTheMilkApi.Objects
     public class RtmApiResponse
     {
         [JsonProperty("stat")]
-        public string Status { get; set; }
+        public string Status
+        {
+            get; set;
+        }
 
         [JsonProperty("api_key")]
-        public string ApiKey { get; set; }
+        public string ApiKey
+        {
+            get; set;
+        }
 
         [JsonProperty("format")]
-        public string Format { get; set; }
+        public string Format
+        {
+            get; set;
+        }
 
         [JsonProperty("method")]
-        public string Method { get; set; }
+        public string Method
+        {
+            get; set;
+        }
 
         [JsonProperty("frob")]
-        public string Frob { get; set; }
+        public string Frob
+        {
+            get; set;
+        }
 
         [JsonProperty("auth")]
-        public RtmApiAuthResponse Auth { get; set; }
+        public RtmApiAuthResponse Auth
+        {
+            get; set;
+        }
 
         [JsonProperty("tasks")]
-        public RtmApiTaskSeriesCollection TaskSeriesCollection { get; set; }
+        public RtmApiTaskSeriesCollection TaskSeriesCollection
+        {
+            get; set;
+        }
 
         [JsonProperty("lists")]
-        public RtmApiListCollection ListCollection { get; set; }
+        public RtmApiListCollection ListCollection
+        {
+            get; set;
+        }
 
         [JsonProperty("err")]
-        public RtmApiErrorResponse ErrorResponse { get; set; }
+        public RtmApiErrorResponse ErrorResponse
+        {
+            get; set;
+        }
 
         [JsonProperty("timeline")]
-        public string TimeLine { get; set; }
+        public string TimeLine
+        {
+            get; set;
+        }
 
         [JsonProperty("list")]
-        public RtmApiTaskSeriesList List { get; set; }
+        public RtmApiTaskSeriesList List
+        {
+            get; set;
+        }
 
         public RtmApiResponse()
         {

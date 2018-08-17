@@ -9,7 +9,10 @@ namespace RememberTheMilkApi.Objects
     {
         [JsonProperty("tag")]
         [JsonConverter(typeof(SingleOrArrayConverter<string>))]
-        public IList<string> Tag { get; set; }
+        public IList<string> Tag
+        {
+            get; set;
+        }
 
         public RtmApiTagObject()
         {
