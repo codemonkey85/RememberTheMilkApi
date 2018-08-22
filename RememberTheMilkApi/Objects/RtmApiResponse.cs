@@ -71,6 +71,12 @@ namespace RememberTheMilkApi.Objects
             get; set;
         }
 
+        [JsonProperty("transaction")]
+        public RtmApiTransaction Transaction
+        {
+            get; set;
+        }
+
         public RtmApiResponse()
         {
             Status = string.Empty;
@@ -84,6 +90,7 @@ namespace RememberTheMilkApi.Objects
             ErrorResponse = new RtmApiErrorResponse();
             TimeLine = string.Empty;
             List = new RtmApiTaskSeriesList();
+            Transaction = new RtmApiTransaction();
         }
     }
 }

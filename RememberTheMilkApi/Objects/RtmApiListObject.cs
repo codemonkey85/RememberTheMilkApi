@@ -58,9 +58,6 @@ namespace RememberTheMilkApi.Objects
             Smart = string.Empty;
         }
 
-        public override string ToString()
-        {
-            return Name ?? string.Empty;
-        }
+        public override string ToString() => Name ?? string.Empty;
     }
 }

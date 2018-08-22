@@ -11,16 +11,9 @@ namespace RememberTheMilkApi.Objects
             get; set;
         }
 
-        //private string WebRequestMethod { get; set; }
-        //private string RtmApiMethod { get; set; }
-
         public RtmApiRequest()
         {
             Parameters = new SortedDictionary<string, string>();
         }
-
-        //public RtmApiResponse SendRequest()
-        //{
-        //}
     }
 }

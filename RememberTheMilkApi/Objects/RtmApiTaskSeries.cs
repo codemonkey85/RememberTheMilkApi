@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RememberTheMilkApi.Converters;
+using System;
 using System.Collections.Generic;
 
 namespace RememberTheMilkApi.Objects
@@ -78,9 +79,9 @@ namespace RememberTheMilkApi.Objects
             Tags = new List<RtmApiTagObject>();
         }
 
-        public override string ToString()
-        {
-            return Name ?? string.Empty;
-        }
+        public override string ToString() => Name ?? string.Empty;
+
+        public DateTime? DateCreated => DateTime.TryParse(Created, out DateTime dateCreated) ? dateCreated : (DateTime?)null;
+        public DateTime? DateModified => DateTime.TryParse(Modified, out DateTime dateModified) ? dateModified : (DateTime?)null;
     }
 }
