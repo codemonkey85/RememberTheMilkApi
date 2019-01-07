@@ -75,7 +75,8 @@ namespace RememberTheMilkApi.Helpers
             parameters.Remove("api_sig");
             parameters.Add("perms", perms);
             parameters.Add("frob", Frob);
-
+            parameters.Add("api_key", ApiKey);
+            
             string apiSig = SignApiParameters(parameters).ToLower();
             parameters.CreateNewOrUpdateExisting("api_sig", apiSig);
 
