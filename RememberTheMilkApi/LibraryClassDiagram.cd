@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="RememberTheMilkApi.Converters.SingleOrArrayConverter&lt;T&gt;">
+    <Position X="9.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAEAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Converters\SingleOrArrayConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Extensions.DateTimeExtensions">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\DateTimeExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Extensions.DictionaryExtensions">
+    <Position X="11.5" Y="2.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\IDictionaryExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Helpers.RtmConnectionHelper">
+    <Position X="15.25" Y="2.25" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="RememberTheMilkApi.Helpers.RtmConnectionHelper.Permissions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\RtmConnectionHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAEACAQAAAAACACAACEggDgAAAAAAIQAAMAMIAAEAg=</HashCode>
+      <FileName>Helpers\RtmConnectionHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Helpers.RtmMethodHelper">
+    <Position X="5.25" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAACAIABAAAAAAgAAAAKAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Helpers\RtmMethodHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiAuthResponse">
+    <Position X="2.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAA=</HashCode>
+      <FileName>Objects\RtmApiAuthResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiErrorResponse">
+    <Position X="4.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiErrorResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiListCollection">
+    <Position X="7" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiListCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiListObject">
+    <Position X="0.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAgAAAAAAAkAAAAEAQIAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Objects\RtmApiListObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiRequest">
+    <Position X="8.25" Y="4.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiResponse">
+    <Position X="0.5" Y="6" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAEAAQAAAAAAAAsgAAAAAgAAAAAAAEAABAAEAI=</HashCode>
+      <FileName>Objects\RtmApiResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiResponseRoot">
+    <Position X="5.25" Y="5.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiResponseRoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiTagObject">
+    <Position X="12" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiTagObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiTaskObject">
+    <Position X="12.5" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIACAAAAAAAAAAoEAAAAEEAAQAAAAAEAAAAACAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiTaskObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiTaskSeries">
+    <Position X="2.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiAAAAAgAAAAAEABAAAAQAAAAAAEQAAGAEAAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiTaskSeries.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiTaskSeriesCollection">
+    <Position X="8.25" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiTaskSeriesCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiTaskSeriesList">
+    <Position X="12" Y="4" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Objects\RtmApiTaskSeriesList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiTransaction">
+    <Position X="16" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiTransaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RememberTheMilkApi.Objects.RtmApiUser">
+    <Position X="14" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Objects\RtmApiUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
